@@ -1,0 +1,11 @@
+.App {
+  text-align: left;
+}
+
+input[type="text"] {
+  width: 25%;
+  height: 20px;
+  padding: 5px;
+  margin: 30px 5px 5px 20px;
+}
+  
