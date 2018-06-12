@@ -7,20 +7,14 @@ class FlavorList extends Component {
 
   render() {
 
-    const list = Object.keys(this.props.flavors).map( key =>
-    this.props.flavors[key];
-    );
-
     return (
-<div className="flavors">
+      <div className="flavors">
 
-<p>
-{ list }
-</p>
+      {/* <p>
+      {Object.keys(this.props.flavors)}
+      </p> */}
 
-  </div>
-
-
+    </div>
 
     );
   }
