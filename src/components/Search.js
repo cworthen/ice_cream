@@ -3,20 +3,10 @@ import React, { Component } from 'react';
 
 
 class Search extends Component {
-//   nameRef = React.createRef();
-//
-//   searchFlavor = event => {
-//     const val = {
-//       name: this.nameRef.current.value
-//
-//   }
-//
-//   console.log(val);
-//
-// };
   render() {
-    const {filterVal, filterUpdate} = this.props
-    console.log(filterVal);
+    //const {filterVal, filterList} = this.props
+      const { filterList } = this.props
+    //console.log(filterVal);
 
     return (
       <div>
@@ -26,10 +16,12 @@ class Search extends Component {
       ref='filterInput'
       type="text"
       placeholder="Search Here"
-      value={filterVal}
-      onChange = {() => {
-         filterUpdate(this.refs.filterInput.value)
-      }}
+      // value={filterVal}
+           onChange={this.filterList}
+      // onChange = {() => {
+      //     this.filterList;
+      //    // filterList(this.refs.filterInput.value)
+      // }}
      />
   </form>
 </div>
