@@ -5,46 +5,69 @@ import Search from './components/Search';
 import './App.css';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.filterList = this.filterList.bind(this);
+        this.state = {
+            filterText: "",
+            flavors: {}
+        };
+    }
 
-  state = {
-    flavors:{},
-    filterText: ''
-  }
 
-componentDidMount = () => {
+componentWillMount = () => {
   this.setState({flavors: sampleFlavors});
-  this.setState({filterText: ''});
+};
 
+filterList = (event) => { // change
+    let filteredList = this.state.flavors.map((item) => {
+        return item.name;
+    });
+
+    filteredList = filteredList.filter((flavor)=> {
+        return flavor.toLowerCase().search(
+            event.target.value.toLowerCase()) !== -1;
+    });
+    filteredList = filteredList.map((flavor, i) => {
+        return {
+            id: `flavors${i}`,
+            name: flavor,
+        }
+    });
+    this.setState({
+        flavors: filteredList
+    });
+    //this.setState({filterText:value});
 };
 
 filterUpdate(value){
-  this.setState({filterText:value});
+  this.setState({filterText:value.target.value});
+
 }
 
 
 
     render() {
-      // console.log('filtertext state', this.state.filterText);
-    const hasSearch =  this.state.filterText ? this.state.filterText.length : 0;
     return (
 
       <div className="App">
-            <Search
-              filterVal = {this.state.filterText}
-              filterUpdate={this.filterUpdate.bind(this)}
-
-            />
+          <div>
+              <form className="Search">
+                  <input name="name"
+                         ref='filterInput'
+                         type="text"
+                         placeholder="Search Here"
+                         onChange={this.filterList}
+                  />
+              </form>
+          </div>
          <ul className="IceCream">
-            {Object.keys(this.state.flavors).map(key =>(
-              <IceCream
-                 key={key}
-                 details={this.state.flavors[key]}
-                 filter={this.state.filterText}
-
-               />
-
+             {Object.keys(this.state.flavors).map(key =>(
+                 <IceCream
+                     key={key}
+                     details={this.state.flavors[key]}
+                 />
              ))}
-
           </ul>
 
 
